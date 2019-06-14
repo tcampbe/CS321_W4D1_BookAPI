@@ -31,6 +31,13 @@
 
 1. Create an IAuthorService and implement it in AuthorService.
 
+1. Create an AuthorsController to allow access to author data.
+
 1. Make sure your services and BookContext are registered for dependency injection.
 
+1. Create an InitialCreate migration and update the database. Make sure you're in project folder!
+
+    dotnet ef migrations add InitialCreate
+    dotnet ef database update
+    
 1. 
