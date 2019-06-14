@@ -5,44 +5,44 @@ using CS321_W3D2_BookAPI.Models;
 
 namespace CS321_W3D2_BookAPI.Services
 {
-    public class BookService : IBookService
+    public class AuthorService : IAuthorService
     {
 
         private readonly BookContext _bookContext;
 
-        public BookService(BookContext bookContext)
+        public AuthorService(BookContext bookContext)
         {
             // TODO: keep a reference to the BookContext in _bookContext
             _bookContext = bookContext;
         }
 
-        public Book Add(Book book)
+        public Author Add(Author author)
         {
             // TODO: implement add
-            _bookContext.Books.Add(book);
+            _bookContext.Authors.Add(author);
             _bookContext.SaveChanges();
-            return book;
+            return author;
         }
 
-        public Book Get(int id)
+        public Author Get(int id)
         {
-            // TODO: return the specified Book using Find()
-            return _bookContext.Books.Find(id);
+            // TODO: return the specified Author using Find()
+            return _bookContext.Authors.Find(id);
         }
 
-        public IEnumerable<Book> GetAll()
+        public IEnumerable<Author> GetAll()
         {
-            // TODO: return all Books using ToList()
-            return _bookContext.Books.ToList();
+            // TODO: return all Authors using ToList()
+            return _bookContext.Authors.ToList();
         }
 
-        public Book Update(Book updatedBook)
+        public Author Update(Author updatedAuthor)
         {
             // get the ToDo object in the current list with this id 
-            var currentBook = _bookContext.Books.Find(updatedBook.Id);
+            var currentAuthor = _bookContext.Authors.Find(updatedAuthor.Id);
 
             // return null if todo to update isn't found
-            if (currentBook == null) return null;
+            if (currentAuthor == null) return null;
 
             // NOTE: This method is already completed for you, but note
             // how the property values are copied below.
@@ -50,20 +50,20 @@ namespace CS321_W3D2_BookAPI.Services
             // copy the property values from the changed todo into the
             // one in the db. NOTE that this is much simpler than individually
             // copying each property.
-            _bookContext.Entry(currentBook)
+            _bookContext.Entry(currentAuthor)
                 .CurrentValues
-                .SetValues(updatedBook);
+                .SetValues(updatedAuthor);
 
             // update the todo and save
-            _bookContext.Books.Update(currentBook);
+            _bookContext.Authors.Update(currentAuthor);
             _bookContext.SaveChanges();
-            return currentBook;
+            return currentAuthor;
         }
 
-        public void Remove(Book book)
+        public void Remove(Author author)
         {
-            // TODO: remove the book
-            _bookContext.Books.Remove(book);
+            // TODO: remove the author
+            _bookContext.Authors.Remove(author);
             _bookContext.SaveChanges();
         }
 
