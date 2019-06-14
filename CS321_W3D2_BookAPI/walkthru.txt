@@ -43,3 +43,4 @@
 1. Make Authors return the list of books, too, by using Include().
 
 
+1. Try adding a book with an invalid AuthorId.
