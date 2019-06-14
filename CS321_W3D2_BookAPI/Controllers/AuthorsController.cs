@@ -47,7 +47,7 @@ namespace CS321_W3D2_BookAPI.Controllers
             }
             catch (System.Exception ex)
             {
-                ModelState.AddModelError("AddAuthor", ex.Message);
+                ModelState.AddModelError("AddAuthor", ex.GetBaseException().Message);
                 return BadRequest(ModelState);
             }
 
