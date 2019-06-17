@@ -65,7 +65,7 @@ namespace CS321_W4D1_BookAPI.Controllers
         {
             var book = _bookService.Update(updatedBook.ToDomainModel());
             if (book == null) return NotFound();
-            return Ok(book);
+            return Ok(book.ToApiModel());
         }
 
         // TODO: delete an existing book

@@ -36,15 +36,9 @@ namespace CS321_W4D1_BookAPI.Core.Services
 
         public Author Update(Author updatedAuthor)
         {
-            // get the ToDo object in the current list with this id 
-            var currentAuthor = _authorRepo.Get(updatedAuthor.Id);
-
-            // return null if todo to update isn't found
-            if (currentAuthor == null) return null;
-
             // update the todo and save
-            _authorRepo.Update(currentAuthor);
-            return currentAuthor;
+            var author = _authorRepo.Update(updatedAuthor);
+            return author;
         }
 
         public void Remove(Author author)
