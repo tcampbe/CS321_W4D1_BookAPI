@@ -23,7 +23,21 @@ namespace CS321_W4D1_BookAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_bookService.GetAll().ToApiModels());
+            var bookModels = _bookService
+                .GetAll()
+                .ToApiModels();
+
+            return Ok(bookModels);
+        }
+        // GET api/author/{authorId}/books
+        [HttpGet("/api/authors/{authorId}/books")]
+        public IActionResult GetBooksForAuthor(int authorId)
+        {
+            var bookModels = _bookService
+                .GetBooksForAuthor(authorId)
+                .ToApiModels();
+
+            return Ok(bookModels);
         }
 
         // get specific book by id

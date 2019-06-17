@@ -8,6 +8,7 @@ namespace CS321_W4D1_BookAPI.Core.Services
         Book Add(Book item);
         Book Get(int id);
         IEnumerable<Book> GetAll();
+        IEnumerable<Book> GetBooksForAuthor(int id);
         void Remove(Book book);
         Book Update(Book updatedBook);
     }
