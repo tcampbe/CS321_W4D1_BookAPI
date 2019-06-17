@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS321_W4D1_BookAPI", "CS321_W4D1_BookAPI\CS321_W4D1_BookAPI.csproj", "{D3047AC2-B953-4A81-BE72-69BA41B6DA7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS321_W4D1_BookAPI.Core", "CS321_W4D1_BookAPI.Core\CS321_W4D1_BookAPI.Core.csproj", "{F383813C-E313-4A4C-A893-62E7A4FD18A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS321_W4D1_BookAPI.Data", "CS321_W4D1_BookAPI.Data\CS321_W4D1_BookAPI.Data.csproj", "{A0D033E8-B366-459B-8FF3-377A1FE8875F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +17,13 @@ Global
 		{D3047AC2-B953-4A81-BE72-69BA41B6DA7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3047AC2-B953-4A81-BE72-69BA41B6DA7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3047AC2-B953-4A81-BE72-69BA41B6DA7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F383813C-E313-4A4C-A893-62E7A4FD18A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F383813C-E313-4A4C-A893-62E7A4FD18A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F383813C-E313-4A4C-A893-62E7A4FD18A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F383813C-E313-4A4C-A893-62E7A4FD18A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D033E8-B366-459B-8FF3-377A1FE8875F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D033E8-B366-459B-8FF3-377A1FE8875F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D033E8-B366-459B-8FF3-377A1FE8875F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D033E8-B366-459B-8FF3-377A1FE8875F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
