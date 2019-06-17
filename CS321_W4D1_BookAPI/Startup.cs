@@ -1,5 +1,5 @@
-﻿using CS321_W3D2_BookAPI.Data;
-using CS321_W3D2_BookAPI.Services;
+﻿using CS321_W4D1_BookAPI.Data;
+using CS321_W4D1_BookAPI.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CS321_W3D2_BookAPI
+namespace CS321_W4D1_BookAPI
 {
     public class Startup
     {
@@ -28,13 +28,12 @@ namespace CS321_W3D2_BookAPI
                     optionsBuilder.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
 
-            // TODO: register the BookContext for injection using AddDbContext
             services.AddDbContext<BookContext>();
 
-            // TODO: register the BookService for injection using AddScoped
+            services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
 
-            // TODO: register the AuthorService for injection using AddScoped   
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IAuthorService, AuthorService>();
         }
 

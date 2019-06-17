@@ -1,8 +1,9 @@
-﻿using CS321_W3D2_BookAPI.Models;
-using CS321_W3D2_BookAPI.Services;
+﻿using CS321_W4D1_BookAPI.ApiModels;
+using CS321_W4D1_BookAPI.Core.Models;
+using CS321_W4D1_BookAPI.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CS321_W3D2_BookAPI.Controllers
+namespace CS321_W4D1_BookAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +23,7 @@ namespace CS321_W3D2_BookAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_bookService.GetAll());
+            return Ok(_bookService.GetAll().ToApiModels());
         }
 
         // get specific book by id
@@ -32,18 +33,19 @@ namespace CS321_W3D2_BookAPI.Controllers
         {
             var book = _bookService.Get(id);
             if (book == null) return NotFound();
-            return Ok(book);
+            return Ok(book.ToApiModel());
         }
 
         // create a new book
         // POST api/books
         [HttpPost]
-        public IActionResult Post([FromBody] Book newBook)
+        public IActionResult Post([FromBody] BookModel newBook)
         {
             try
             {
+
                 // add the new book
-                _bookService.Add(newBook);
+                _bookService.Add(newBook.ToDomainModel());
             }
             catch (System.Exception ex)
             {
@@ -59,9 +61,9 @@ namespace CS321_W3D2_BookAPI.Controllers
         // TODO: update an existing book
         // PUT api/books/:id
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Book updatedBook)
+        public IActionResult Put(int id, [FromBody] BookModel updatedBook)
         {
-            var book = _bookService.Update(updatedBook);
+            var book = _bookService.Update(updatedBook.ToDomainModel());
             if (book == null) return NotFound();
             return Ok(book);
         }

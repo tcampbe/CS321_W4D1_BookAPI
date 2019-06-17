@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CS321_W3D2_BookAPI.Models
+namespace CS321_W4D1_BookAPI.ApiModels
 {
-    public class Book
+    public class BookModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -12,9 +12,9 @@ namespace CS321_W3D2_BookAPI.Models
         public int PublicationYear { get; set; }
 
         public int AuthorId { get; set; }
-        public Author Author { get; set; }
+        public string Author { get; set; }
 
         public int PublisherId { get; set; }
-        public Publisher Publisher { get; set; }
+        public string Publisher { get; set; }
     }
 }

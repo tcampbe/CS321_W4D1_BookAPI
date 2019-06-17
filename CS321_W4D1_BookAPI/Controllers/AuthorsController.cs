@@ -1,8 +1,10 @@
-﻿using CS321_W3D2_BookAPI.Models;
-using CS321_W3D2_BookAPI.Services;
+﻿using CS321_W4D1_BookAPI.Core.Models;
+using CS321_W4D1_BookAPI.ApiModels;
+using CS321_W4D1_BookAPI.Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
-namespace CS321_W3D2_BookAPI.Controllers
+namespace CS321_W4D1_BookAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +24,8 @@ namespace CS321_W3D2_BookAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_authorService.GetAll());
+            var authorModels = _authorService.GetAll().ToApiModels();
+            return Ok(authorModels);
         }
 
         // get specific author by id
@@ -38,12 +41,12 @@ namespace CS321_W3D2_BookAPI.Controllers
         // create a new author
         // POST api/authors
         [HttpPost]
-        public IActionResult Post([FromBody] Author newAuthor)
+        public IActionResult Post([FromBody] AuthorModel newAuthor)
         {
             try
             {
                 // add the new author
-                _authorService.Add(newAuthor);
+                _authorService.Add(newAuthor.ToDomainModel());
             }
             catch (System.Exception ex)
             {
@@ -59,9 +62,9 @@ namespace CS321_W3D2_BookAPI.Controllers
         // TODO: update an existing author
         // PUT api/authors/:id
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Author updatedAuthor)
+        public IActionResult Put(int id, [FromBody] AuthorModel updatedAuthor)
         {
-            var author = _authorService.Update(updatedAuthor);
+            var author = _authorService.Update(updatedAuthor.ToDomainModel());
             if (author == null) return NotFound();
             return Ok(author);
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CS321_W3D2_BookAPI.Models
+namespace CS321_W4D1_BookAPI.Core.Models
 {
     public class Author
     {

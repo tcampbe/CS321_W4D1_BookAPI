@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CS321_W3D2_BookAPI.Migrations
+namespace CS321_W4D1_BookAPI.Data.Migrations
 {
     public partial class Initial : Migration
     {
@@ -91,17 +91,17 @@ namespace CS321_W3D2_BookAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "AuthorId", "Genre", "OriginalLanguage", "PublicationYear", "PublisherId", "Title" },
-                values: new object[] { 1, 1, "Novel", "English", 0, 1, "The Grapes of Wrath" });
+                values: new object[] { 1, 1, "Novel", "English", 1939, 1, "The Grapes of Wrath" });
 
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "AuthorId", "Genre", "OriginalLanguage", "PublicationYear", "PublisherId", "Title" },
-                values: new object[] { 2, 1, "Regional", "English", 0, 1, "Cannery Row" });
+                values: new object[] { 2, 1, "Regional", "English", 1945, 1, "Cannery Row" });
 
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "AuthorId", "Genre", "OriginalLanguage", "PublicationYear", "PublisherId", "Title" },
-                values: new object[] { 3, 2, "Horror", "English", 0, 2, "The Shining" });
+                values: new object[] { 3, 2, "Horror", "English", 1977, 2, "The Shining" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_AuthorId",
