@@ -38,9 +38,9 @@ namespace CS321_W3D2_BookAPI.Data
 
             // TODO: configure some seed data in the books table
             modelBuilder.Entity<Book>().HasData(
-               new Book { Id = 1, Title = "The Grapes of Wrath", Genre = "Novel", OriginalLanguage = "English", AuthorId = 1, PublisherId = 1 },
-               new Book { Id = 2, Title = "Cannery Row", Genre = "Regional", OriginalLanguage = "English", AuthorId = 1, PublisherId = 1 },
-               new Book { Id = 3, Title = "The Shining", Genre = "Horror", OriginalLanguage = "English", AuthorId = 2, PublisherId = 2 }
+               new Book { Id = 1, Title = "The Grapes of Wrath", Genre = "Novel", PublicationYear = 1939, OriginalLanguage = "English", AuthorId = 1, PublisherId = 1 },
+               new Book { Id = 2, Title = "Cannery Row", Genre = "Regional", PublicationYear = 1945, OriginalLanguage = "English", AuthorId = 1, PublisherId = 1 },
+               new Book { Id = 3, Title = "The Shining", Genre = "Horror", PublicationYear = 1977, OriginalLanguage = "English", AuthorId = 2, PublisherId = 2 }
             );
 
         }

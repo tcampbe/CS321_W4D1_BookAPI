@@ -30,13 +30,17 @@ namespace CS321_W3D2_BookAPI.Services
             // TODO: return the specified Book using Find()
             return _bookContext.Books
                 .Include(b => b.Author)
+                .Include(b => b.Publisher)
                 .SingleOrDefault(b => b.Id == id);
         }
 
         public IEnumerable<Book> GetAll()
         {
             // TODO: return all Books using ToList()
-            return _bookContext.Books.Include(b => b.Author).ToList();
+            return _bookContext.Books
+                .Include(b => b.Author)
+                .Include(b => b.Publisher)
+                .ToList();
         }
 
         public Book Update(Book updatedBook)
