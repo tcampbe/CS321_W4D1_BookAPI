@@ -13,13 +13,11 @@ namespace CS321_W4D1_BookAPI.Services
 
         public BookService(BookContext bookContext)
         {
-            // TODO: keep a reference to the BookContext in _bookContext
             _bookContext = bookContext;
         }
 
         public Book Add(Book book)
         {
-            // TODO: implement add
             _bookContext.Books.Add(book);
             _bookContext.SaveChanges();
             return book;
@@ -27,14 +25,18 @@ namespace CS321_W4D1_BookAPI.Services
 
         public Book Get(int id)
         {
-            // TODO: return the specified Book using Find()
-            return _bookContext.Books.Find(id);
+            return _bookContext.Books
+                .Include(b => b.Publisher)
+                .Include(b => b.Author)
+                .SingleOrDefault(b => b.Id == id);
         }
 
         public IEnumerable<Book> GetAll()
         {
-            // TODO: return all Books using ToList()
-            return _bookContext.Books.ToList();
+            return _bookContext.Books
+                .Include(b => b.Publisher)
+                .Include(b => b.Author)
+                .ToList();
         }
 
         public Book Update(Book updatedBook)
