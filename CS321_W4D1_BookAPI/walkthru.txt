@@ -1,46 +1,101 @@
-﻿1. Add the Microsoft.EntityFrameworkCore.Sqlite package to the project.
-1. Add an Author model.
-1. Add an Author navigation property to Book.
-1. Configure Json serialization settings in Startup ConfigureServices.
+﻿
+1. Note that there is a new folder called ApiModels. It contains classes for AuthorModel, BookModel, and PublisherModel. The suffix "Model" has been added to make it clearer that these are different from the domain entities Book, Author, and Publisher.
+1. Open the AuthorModel class and make it look like the class below.
 
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(optionsBuilder =>
-                {
-                    optionsBuilder.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                });
-
-1. Add a DbSet<Book> to BookContext.
-1. Add a DbSet<Author> to BookContext.
-1. Configure a Sqlite db in BookContext OnConfiguring.
-
-            optionsBuilder.UseSqlite("Data Source=books.db");
-
-1. In BookContext OnModelCreating, configure some seed data for books and authors.
-
-            modelBuilder.Entity<Author>().HasData(
-               new Author { Id = 1, FirstName = "John", LastName = "Steinbeck", BirthDate = new DateTime(1902, 2, 27)  },
-               new Author { Id = 2, FirstName = "Stephen", LastName = "King", BirthDate = new DateTime(1947, 9, 21) }
-            );
-
-            modelBuilder.Entity<Book>().HasData(
-               new Book { Id = 1, Title = "The Grapes of Wrath", AuthorId = 1 },
-               new Book { Id = 2, Title = "Cannery Row", AuthorId = 1 },
-               new Book { Id = 3, Title = "The Shining", AuthorId = 2 }
-            );
-
-1. Create an IAuthorService and implement it in AuthorService.
-
-1. Create an AuthorsController to allow access to author data.
-
-1. Make sure your services and BookContext are registered for dependency injection.
-
-1. Create an InitialCreate migration and update the database. Make sure you're in project folder!
-
-    dotnet ef migrations add InitialCreate
-    dotnet ef database update
+    public class AuthorModel
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime BirthDate { get; set; }
+        public ICollection<BookModel> Books { get; set; }
+    }
     
-1. Make Authors return the list of books, too, by using Include().
+1. Open the PublisherModel and make it look like the class below.
 
+    public class PublisherModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int FoundedYear { get; set; }
+        public string CountryOfOrigin { get; set; }
+        public string HeadQuartersLocation { get; set; }
+        public ICollection<BookModel> Books { get; set; }
+    }
+    
+1. Open the BookModel and make it look like the class below. Note that the **Author** and **Publisher** properties are strings rather than objects.
 
-1. Try adding a book with an invalid AuthorId.
+    public class BookModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string OriginalLanguage { get; set; }
+        public string Genre { get; set; }
+        public int PublicationYear { get; set; }
+
+        public int AuthorId { get; set; }
+        public string Author { get; set; }
+
+        public int PublisherId { get; set; }
+        public string Publisher { get; set; }
+    }
+
+1. Open the AuthorMappingExtensions class. Add the following to the ToApiModel() method:
+
+            return new AuthorModel
+            {
+                Id = author.Id,
+                BirthDate = author.BirthDate,
+                FirstName = author.FirstName,
+                LastName = author.LastName,
+            };
+
+1. In the AuthorMappingExtensions class, add the following to the ToDomainModel() method:
+
+            return new Author
+            {
+                Id = authorModel.Id,
+                BirthDate = authorModel.BirthDate,
+                FirstName = authorModel.FirstName,
+                LastName = authorModel.LastName,
+            };
+
+1. Open the BookMappingExtensions class. Add the following to the ToApiModel() method. Note how the Publisher and Author properties are concatenated strings.
+
+            return new BookModel
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Genre = book.Genre,
+                OriginalLanguage = book.OriginalLanguage,
+                PublicationYear = book.PublicationYear,
+                PublisherId = book.PublisherId,
+                // concatenate the publisher name and city and use it as the value of Publisher. Use null 
+                // if Publisher is null.
+                Publisher = book.Publisher != null 
+                    ? book.Publisher.Name + ", " + book.Publisher.HeadQuartersLocation 
+                    : null,
+                AuthorId = book.AuthorId,
+                // concatenate the author's name properties and use it as the value of Author. Use null
+                // if the Author is null.
+                Author = book.Author != null 
+                    ? book.Author.LastName + ", " + book.Author.FirstName 
+                    : null
+            };
+
+1. In the BookMappingExtensions class, add the following to the ToDomainModel() method:
+
+            return new Book
+            {
+                Id = bookModel.Id,
+                Title = bookModel.Title,
+                Genre = bookModel.Genre,
+                OriginalLanguage = bookModel.OriginalLanguage,
+                PublicationYear = bookModel.PublicationYear,
+                PublisherId = bookModel.PublisherId,
+                AuthorId = bookModel.AuthorId,
+                // Note that we don't set the Publisher or Author object properties. Setting 
+                // the PublisherId and AuthorId fields is enough.
+            };
+
+1. 

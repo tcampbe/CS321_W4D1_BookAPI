@@ -12,10 +12,7 @@ namespace CS321_W4D1_BookAPI.ApiModels
         {
             return new AuthorModel
             {
-                Id = author.Id,
-                BirthDate = author.BirthDate,
-                FirstName = author.FirstName,
-                LastName = author.LastName,
+                // TODO: map Author properties to corresponding AuthorModel properties
             };
         }
 
@@ -23,10 +20,7 @@ namespace CS321_W4D1_BookAPI.ApiModels
         {
             return new Author
             {
-                Id = authorModel.Id,
-                BirthDate = authorModel.BirthDate,
-                FirstName = authorModel.FirstName,
-                LastName = authorModel.LastName,
+                // TODO: map AuthorModel properties to corresponding Author props
             };
         }
 

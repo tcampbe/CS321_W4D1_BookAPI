@@ -24,7 +24,10 @@ namespace CS321_W4D1_BookAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var authorModels = _authorService.GetAll().ToApiModels();
+            // TODO: return ApiModels instead of domain models
+            var authorModels = _authorService
+                .GetAll()
+                .ToApiModels();
             return Ok(authorModels);
         }
 
@@ -33,7 +36,10 @@ namespace CS321_W4D1_BookAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var author = _authorService.Get(id);
+            // TODO: return ApiModel instead of domain model
+            var author = _authorService
+                .Get(id)
+                .ToApiModel();
             if (author == null) return NotFound();
             return Ok(author);
         }
@@ -45,6 +51,7 @@ namespace CS321_W4D1_BookAPI.Controllers
         {
             try
             {
+                // TODO: convert the newAuthor to a domain model
                 // add the new author
                 _authorService.Add(newAuthor.ToDomainModel());
             }
@@ -64,6 +71,7 @@ namespace CS321_W4D1_BookAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] AuthorModel updatedAuthor)
         {
+            // TODO: convert updatedAuthor to a domain model
             var author = _authorService.Update(updatedAuthor.ToDomainModel());
             if (author == null) return NotFound();
             return Ok(author);
