@@ -1,5 +1,4 @@
 ﻿using CS321_W4D1_BookAPI.ApiModels;
-using CS321_W4D1_BookAPI.Core.Models;
 using CS321_W4D1_BookAPI.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,18 +13,16 @@ namespace CS321_W4D1_BookAPI.Controllers
         // Constructor
         public BooksController(IBookService bookService)
         {
-            // TODO: keep a reference to the service so we can use below
             _bookService = bookService;
         }
 
-        // TODO: get all books
         // GET api/books
         [HttpGet]
         public IActionResult Get()
         {
             var bookModels = _bookService
                 .GetAll()
-                .ToApiModels();
+                .ToApiModels(); // convert Books to BookModels
 
             return Ok(bookModels);
         }
@@ -67,12 +64,9 @@ namespace CS321_W4D1_BookAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            // return a 201 Created status. This will also add a "location" header
-            // with the URI of the new book. E.g., /api/books/99, if the new is 99
             return CreatedAtAction("Get", new { Id = newBook.Id }, newBook);
         }
 
-        // TODO: update an existing book
         // PUT api/books/:id
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] BookModel updatedBook)
@@ -82,7 +76,6 @@ namespace CS321_W4D1_BookAPI.Controllers
             return Ok(book.ToApiModel());
         }
 
-        // TODO: delete an existing book
         // DELETE api/books/:id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
