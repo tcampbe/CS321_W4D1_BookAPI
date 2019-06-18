@@ -1,5 +1,5 @@
 ﻿using CS321_W4D1_BookAPI.Data;
-using CS321_W4D1_BookAPI.Core.Services;
+using CS321_W4D1_BookAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,10 +30,8 @@ namespace CS321_W4D1_BookAPI
 
             services.AddDbContext<BookContext>();
 
-            services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
 
-            services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IAuthorService, AuthorService>();
         }
 

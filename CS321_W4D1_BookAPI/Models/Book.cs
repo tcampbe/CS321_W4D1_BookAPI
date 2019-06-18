@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CS321_W4D1_BookAPI.Core.Models
+namespace CS321_W4D1_BookAPI.Models
 {
     public class Book
     {

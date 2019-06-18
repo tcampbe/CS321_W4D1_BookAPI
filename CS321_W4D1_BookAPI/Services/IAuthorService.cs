@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using CS321_W4D1_BookAPI.Core.Models;
+using CS321_W4D1_BookAPI.Models;
 
-namespace CS321_W4D1_BookAPI.Core.Services
+namespace CS321_W4D1_BookAPI.Services
 {
     public interface IAuthorService
     {

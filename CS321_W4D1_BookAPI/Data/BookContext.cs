@@ -1,5 +1,5 @@
 ﻿using System;
-using CS321_W4D1_BookAPI.Core.Models;
+using CS321_W4D1_BookAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CS321_W4D1_BookAPI.Data
@@ -16,7 +16,7 @@ namespace CS321_W4D1_BookAPI.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // TODO: use optionsBuilder to configure a Sqlite db
-            optionsBuilder.UseSqlite("Data Source=../CS321_W4D1_BookAPI.Data/books.db");
+            optionsBuilder.UseSqlite("Data Source=books.db");
         }
 
         // This method runs once when the DbContext is first used.

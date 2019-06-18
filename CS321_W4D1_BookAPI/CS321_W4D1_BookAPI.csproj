@@ -8,13 +8,16 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.4" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ApiModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CS321_W4D1_BookAPI.Core\CS321_W4D1_BookAPI.Core.csproj" />
-    <ProjectReference Include="..\CS321_W4D1_BookAPI.Data\CS321_W4D1_BookAPI.Data.csproj" />
+    <Compile Remove="Services\IBookRepository.cs" />
   </ItemGroup>
 </Project>
