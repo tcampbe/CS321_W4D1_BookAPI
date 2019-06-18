@@ -98,4 +98,41 @@
                 // the PublisherId and AuthorId fields is enough.
             };
 
-1. 
+
+
+1. In the Get() action, convert the domain models into ApiModels:
+
+            var bookModels = _bookService
+                .GetAll()
+                .ToApiModels(); // convert Books to BookModels
+
+
+1. In the Get(int id) action, convert the domain model into an ApiModel:
+
+            var book = _bookService
+                .Get(id)
+                .ToApiModel();
+
+1. In the Post() action, convert the BookModel into a Book domain object:
+
+                _bookService.Add(newBook.ToDomainModel());
+
+1. In the Put() action, convert the BookModel into a Book domain object:
+
+            var book = _bookService.Update(updatedBook.ToDomainModel());
+
+
+1. Add a nested route that returns all books for an author
+
+        // TODO: Add a route that returns all books for an author
+        // GET api/author/{authorId}/books
+        [HttpGet("/api/authors/{authorId}/books")]
+        public IActionResult GetBooksForAuthor(int authorId)
+        {
+            // TODO: convert domain models to apimodels
+            var bookModels = _bookService
+                .GetBooksForAuthor(authorId)
+                .ToApiModels();
+
+            return Ok(bookModels);
+        }
