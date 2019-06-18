@@ -26,6 +26,8 @@ namespace CS321_W4D1_BookAPI.Controllers
 
             return Ok(bookModels);
         }
+
+        // TODO: Add a route that returns all books for an author
         // GET api/author/{authorId}/books
         [HttpGet("/api/authors/{authorId}/books")]
         public IActionResult GetBooksForAuthor(int authorId)
