@@ -1,4 +1,4 @@
-﻿using CS321_W4D1_BookAPI.Core.Models;
+﻿using CS321_W4D1_BookAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

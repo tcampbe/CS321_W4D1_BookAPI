@@ -3,20 +3,22 @@ using System;
 using CS321_W4D1_BookAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CS321_W4D1_BookAPI.Data.Migrations
+namespace CS321_W4D1_BookAPI.Migrations
 {
     [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20190618173520_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
-            modelBuilder.Entity("CS321_W4D1_BookAPI.Core.Models.Author", b =>
+            modelBuilder.Entity("CS321_W4D1_BookAPI.Models.Author", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -48,7 +50,7 @@ namespace CS321_W4D1_BookAPI.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CS321_W4D1_BookAPI.Core.Models.Book", b =>
+            modelBuilder.Entity("CS321_W4D1_BookAPI.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -106,7 +108,7 @@ namespace CS321_W4D1_BookAPI.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CS321_W4D1_BookAPI.Core.Models.Publisher", b =>
+            modelBuilder.Entity("CS321_W4D1_BookAPI.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -142,14 +144,14 @@ namespace CS321_W4D1_BookAPI.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CS321_W4D1_BookAPI.Core.Models.Book", b =>
+            modelBuilder.Entity("CS321_W4D1_BookAPI.Models.Book", b =>
                 {
-                    b.HasOne("CS321_W4D1_BookAPI.Core.Models.Author", "Author")
+                    b.HasOne("CS321_W4D1_BookAPI.Models.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("CS321_W4D1_BookAPI.Core.Models.Publisher", "Publisher")
+                    b.HasOne("CS321_W4D1_BookAPI.Models.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade);

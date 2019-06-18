@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CS321_W4D1_BookAPI.Data.Migrations
+namespace CS321_W4D1_BookAPI.Migrations
 {
     public partial class Initial : Migration
     {

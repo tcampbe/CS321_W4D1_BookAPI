@@ -1,6 +1,6 @@
-﻿using CS321_W4D1_BookAPI.Core.Models;
+﻿using CS321_W4D1_BookAPI.Models;
 using CS321_W4D1_BookAPI.ApiModels;
-using CS321_W4D1_BookAPI.Core.Services;
+using CS321_W4D1_BookAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
