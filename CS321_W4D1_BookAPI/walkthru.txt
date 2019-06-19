@@ -11,19 +11,8 @@
         public ICollection<BookModel> Books { get; set; }
     }
     
-1. Open the PublisherModel and make it look like the class below.
-
-    public class PublisherModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int FoundedYear { get; set; }
-        public string CountryOfOrigin { get; set; }
-        public string HeadQuartersLocation { get; set; }
-        public ICollection<BookModel> Books { get; set; }
-    }
     
-1. Open the BookModel and make it look like the class below. Note that the **Author** and **Publisher** properties are strings rather than objects.
+1. Open the BookModel and make it look like the class below. Note that the **Author** is a string.
 
     public class BookModel
     {
@@ -37,7 +26,6 @@
         public string Author { get; set; }
 
         public int PublisherId { get; set; }
-        public string Publisher { get; set; }
     }
 
 1. Open the AuthorMappingExtensions class. Add the following to the ToApiModel() method:
@@ -70,11 +58,6 @@
                 OriginalLanguage = book.OriginalLanguage,
                 PublicationYear = book.PublicationYear,
                 PublisherId = book.PublisherId,
-                // concatenate the publisher name and city and use it as the value of Publisher. Use null 
-                // if Publisher is null.
-                Publisher = book.Publisher != null 
-                    ? book.Publisher.Name + ", " + book.Publisher.HeadQuartersLocation 
-                    : null,
                 AuthorId = book.AuthorId,
                 // concatenate the author's name properties and use it as the value of Author. Use null
                 // if the Author is null.
@@ -136,3 +119,44 @@
 
             return Ok(bookModels);
         }
+
+
+
+
+
+// second part of exercise
+
+
+
+
+1. Add Publisher property to BookModel.
+1. Modify BookMappingExtensions to map publisher to a string.
+                // concatenate the publisher name and city and use it as the value of Publisher. Use null 
+                // if Publisher is null.
+                Publisher = book.Publisher != null 
+                    ? book.Publisher.Name + ", " + book.Publisher.HeadQuartersLocation 
+                    : null,
+
+1. Add a service method called GetBooksForPublisher(int publisherId) and make it return books for a publisher.
+
+1. Add a nested route to BooksController to fetch books for a publisher:
+
+   // GET /publishers/{publisherId}/books
+ 
+1. Add a PublisherService with the basic CRUDL operations for publishers. The domain classes and database are already set up for you.
+
+1. Add a PublishersController that lets you do the basic CRUDL operations.
+
+1. Add a PublisherModel.
+
+    public class PublisherModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int FoundedYear { get; set; }
+        public string CountryOfOrigin { get; set; }
+        public string HeadQuartersLocation { get; set; }
+        public ICollection<BookModel> Books { get; set; }
+    }
+
+1. Complete the PublisherMappingExtensions class that maps Publisher domain model to PublisherModel and back.

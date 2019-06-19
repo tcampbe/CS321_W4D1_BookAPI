@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace CS321_W4D1_BookAPI.ApiModels
 {
-    public static class AuthorMappingExtenstions
+    public static class AuthorMappingExtensions
     {
 
         public static AuthorModel ToApiModel(this Author author)
