@@ -124,7 +124,7 @@
 
 
 
-// second part of exercise
+// second part of exercise (class project)
 
 
 
