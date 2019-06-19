@@ -70,13 +70,6 @@ namespace CS321_W4D1_BookAPI.Services
             _bookContext.SaveChanges();
         }
 
-        public IEnumerable<Book> GetBooksForAuthor(int authorId)
-        {
-            return _bookContext.Books
-                .Include(b => b.Publisher)
-                .Include(b => b.Author)
-                .Where(b => b.AuthorId == authorId)
-                .ToList();
-        }
+        // TODO: implement GetBooksForAuthor() method
     }
 }
