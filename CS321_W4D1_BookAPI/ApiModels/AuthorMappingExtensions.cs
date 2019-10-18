@@ -7,14 +7,13 @@ namespace CS321_W4D1_BookAPI.ApiModels
 {
     public static class AuthorMappingExtensions
     {
-
         public static AuthorModel ToApiModel(this Author author)
         {
             // return a new AuthorModel and copy the
             // property values from the Author domain model
             return new AuthorModel
             {
-                // TODO: map Author properties to corresponding AuthorModel properties
+                // Done: map Author properties to corresponding AuthorModel properties
                 Id = author.Id,
                 BirthDate = author.BirthDate,
                 FirstName = author.FirstName,
@@ -28,7 +27,7 @@ namespace CS321_W4D1_BookAPI.ApiModels
             // property values over from the AuthorModel
             return new Author
             {
-                // TODO: map AuthorModel properties to corresponding Author props
+                // Done: map AuthorModel properties to corresponding Author props
                 Id = authorModel.Id,
                 BirthDate = authorModel.BirthDate,
                 FirstName = authorModel.FirstName,

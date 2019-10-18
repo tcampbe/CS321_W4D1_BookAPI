@@ -17,12 +17,12 @@ namespace CS321_W4D1_BookAPI.Services
             _bookContext = bookContext;
         }
 
-        public Author Add(Author Author)
+        public Author Add(Author author)
         {
             // TODO: implement add
-            _bookContext.Authors.Add(Author);
+            _bookContext.Authors.Add(author);
             _bookContext.SaveChanges();
-            return Author;
+            return author;
         }
 
         public Author Get(int id)
